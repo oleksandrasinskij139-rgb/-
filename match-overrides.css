@@ -1,0 +1,6 @@
+
+/* EvoVisuals reference layout adapted for LuxVisuals */
+:root{color-scheme:dark}
+body{background:#17151e!important}
+.side-nav{max-width:100%;overflow-x:auto;scrollbar-width:none}
+.side-nav::-webkit-scrollbar{display:none}

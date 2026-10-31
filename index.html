@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LuxVisuals — Admin</title><meta name="robots" content="noindex,nofollow"><link rel="stylesheet" href="../admin.css">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'">
+</head><body>
+<div class="ambient"></div>
+<main class="shell">
+  <section id="login" class="login-wrap">
+    <div class="brand"><span class="crown">♛</span><span>LuxVisuals <small>CONTROL CENTER</small></span></div>
+    <div class="login-card">
+      <div class="eyebrow">ЗАКРЫТАЯ ЗОНА</div><h1>Панель <span>администратора</span></h1>
+      <p>Введи админ-пароль, чтобы открыть управление игроками.</p>
+      <form id="login-form"><label for="admin-pass">Админ-пароль</label><input id="admin-pass" type="password" autocomplete="current-password" placeholder="Введите пароль" required><button class="primary wide">Войти в панель <b>→</b></button><div id="login-error" class="error"></div></form>
+      
+    </div>
+    <a class="back-link" href="../index.html">← На сайт LuxVisuals</a>
+  </section>
+
+  <section id="app" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand"><span class="crown">♛</span><span>LuxVisuals <small>ADMIN PANEL</small></span></div>
+      <div class="side-label">УПРАВЛЕНИЕ</div>
+      <button class="side-link active" data-page="players"><span>♙</span> Игроки <i id="side-count">0</i></button>
+      <button class="side-link" data-page="admins"><span>♜</span> Администраторы</button>
+      <button class="side-link" data-page="mass"><span>◈</span> Массовые действия</button>
+      <div class="side-bottom"><div class="admin-avatar">M</div><div><b>Админ</b><small id="side-role">Полный доступ</small></div><button id="logout" title="Выйти">↪</button></div>
+    </aside>
+    <div class="main-area">
+      <header class="topbar"><div><div class="eyebrow">LUXVISUALS / CONTROL</div><h1 id="page-title">Игроки</h1></div><div class="top-actions"><span class="live-dot"></span><span>Система активна</span><button class="subtle-btn" id="demo-players">＋ Демо-игроки</button><button class="icon-btn" id="refresh" title="Обновить">↻</button></div></header>
+      <section id="players-page">
+        <div class="stats">
+          <article class="stat"><span>Всего игроков</span><strong id="total-count">0</strong><small>Зарегистрировано с модом</small><b class="stat-icon">♙</b></article>
+          <article class="stat"><span>Сейчас в сети</span><strong id="online-count">0</strong><small class="green">● Активны прямо сейчас</small><b class="stat-icon">◉</b></article>
+          <article class="stat"><span>Не в сети</span><strong id="offline-count">0</strong><small>Последние подключения</small><b class="stat-icon">◌</b></article>
+        </div>
+        <div class="section-head"><div><h2>Список игроков</h2><p>Игроки, зарегистрированные с модом</p></div><div class="filters"><input id="search" placeholder="⌕  Поиск по нику..."><select id="status-filter"><option value="all">Все игроки</option><option value="online">В сети</option><option value="offline">Не в сети</option></select></div></div>
+        <div id="player-grid" class="player-grid"></div>
+      </section>
+      <section id="mass-page" class="hidden">
+        <div class="section-head"><div><h2>Массовые действия</h2><p>Команды всем игрокам, которые сейчас в сети</p></div></div>
+        <div class="mass-grid">
+          <article class="panel"><h3>Объявление всем</h3><p>Сообщение появится в чате у каждого игрока онлайн.</p><input id="mass-message" maxlength="200" placeholder="Текст объявления"><button class="manage-btn" data-mass="message">Отправить объявление</button></article>
+          <article class="panel"><h3>Закрыть игру всем</h3><p>Minecraft закроется у всех, кто сейчас в сети.</p><button class="manage-btn danger-btn" data-mass="close">Закрыть игру у всех</button></article>
+          <article class="panel"><h3>Заморозить всех</h3><p>Временно отключить управление у всех игроков онлайн.</p><input id="mass-freeze-seconds" type="number" min="1" max="300" value="10" placeholder="Секунд"><button class="manage-btn" data-mass="freeze">Заморозить всех</button></article>
+          <article class="panel"><h3>Эффект всем</h3><p>Демо-эффект частиц для всех игроков.</p><select id="mass-effect"><option value="rain">Дождь частиц</option><option value="flash">Вспышка</option><option value="confetti">Конфетти</option></select><button class="manage-btn" data-mass="effect">Включить эффект</button></article>
+        </div>
+      </section>
+      <section id="admins-page" class="hidden">
+        <div class="section-head"><div><h2>Администраторы</h2><p>Создание ограниченных ссылок для помощников</p></div></div>
+        <div class="admin-create panel"><div><h3>Добавить администратора</h3><p>Укажи имя: ссылка для входа покажется один раз.</p></div><form id="admin-form"><input id="new-admin-name" placeholder="Имя администратора" required maxlength="32"><button class="primary">＋ Создать</button></form></div>
+        <div class="panel"><h3>Список администраторов</h3><div id="admin-list"></div></div>
+        <p class="security-note">Ограниченные администраторы не видят токены игроков, UUID и приватные идентификаторы.</p>
+      </section>
+      <footer>LuxVisuals Admin</footer>
+    </div>
+  </section>
+</main>
+
+<div id="manage-modal" class="modal hidden"><div class="modal-card"><button class="close" data-close>×</button><div id="modal-content"></div></div></div>
+<div id="toast" class="toast"></div>
+<script src="../config.js"></script>
+<script src="../admin.js"></script>
+</body></html>

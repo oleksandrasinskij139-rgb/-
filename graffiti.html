@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LuxVisuals — Граффити</title>
+<link rel="icon" href="assets/luxvisuals-crown.png">
+<link rel="stylesheet" href="styles.css">
+<style>
+:root{color-scheme:dark}
+body{min-height:100vh;background:radial-gradient(ellipse at 80% 12%,#14284b 0,transparent 42%),#080a10;color:#f3f5fb}
+.site-nav{max-width:1180px;margin:22px auto 0;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px;border:1px solid #273247;border-radius:22px;background:rgba(13,17,27,.88);position:relative;z-index:2}
+.brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-size:22px;font-weight:750;white-space:nowrap}
+.brand img{width:48px;height:48px;object-fit:contain;border-radius:14px;background:#fff;padding:5px}
+.navlinks{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.navlinks a{color:#aab5ca;text-decoration:none;font-size:16px}.navlinks a.active,.navlinks a:hover{color:#fff}
+.page{max-width:1180px;margin:0 auto;padding:58px 22px 90px;position:relative;z-index:1}
+.eyebrow{color:#83b7ff;font-weight:800;letter-spacing:.17em;font-size:13px;text-transform:uppercase}
+h1{font-size:clamp(38px,6vw,64px);letter-spacing:-.045em;margin:16px 0 12px;line-height:1.05}
+.lead{color:#9ca9c0;font-size:18px;line-height:1.65;max-width:720px;margin:0 0 30px}
+.tokenbar{display:flex;align-items:center;gap:12px;width:max-content;max-width:100%;padding:10px 15px;border:1px solid #303b50;border-radius:16px;background:#101725;margin:24px 0 30px}
+.tokenbar img{width:34px;height:34px;object-fit:contain}.tokenbar strong{font-size:20px}
+.panel{border:1px solid #29364d;background:rgba(16,23,36,.92);border-radius:22px;padding:24px;margin:18px 0;box-shadow:0 18px 55px #0003}
+.panel h2{font-size:24px;margin:0 0 8px}.muted{color:#96a3ba}
+.upload-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.field{display:block;width:100%;box-sizing:border-box;background:#090f19;border:1px solid #34415a;border-radius:13px;padding:14px 15px;color:#fff;font:inherit;margin:10px 0}
+.btn{border:1px solid #405c85;background:#1b3150;color:#dceaff;border-radius:13px;padding:14px 20px;font:inherit;font-weight:650;cursor:pointer}
+.btn:hover{filter:brightness(1.15)}.btn:disabled{opacity:.5}
+.preview{display:none;max-width:180px;max-height:180px;object-fit:contain;border-radius:16px;margin:14px 0}.preview.show{display:block}
+.status{display:none;padding:12px 14px;border-radius:12px;margin-top:14px;background:#172b25;color:#bdf4d2}.status.show{display:block}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:15px;margin-top:18px}
+.graffiti-item{overflow:hidden;border:1px solid #303d54;background:#0c1421;border-radius:16px}
+.graffiti-item img{width:100%;height:170px;object-fit:cover;display:block}.item-meta{padding:12px;color:#aab6cb;font-size:13px}.item-meta b{color:#fff;font-size:15px}
+.empty{color:#8794aa;padding:24px;border:1px dashed #39465d;border-radius:14px;text-align:center}
+.ghost{position:fixed;width:54px;opacity:.65;pointer-events:none;z-index:0;animation:float 13s ease-in-out infinite}.ghost.one{top:18%;left:4%}.ghost.two{top:64%;right:5%;animation-delay:-6s}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-7deg)}50%{transform:translateY(-28px) rotate(8deg)}}
+@media(max-width:700px){.site-nav{margin:10px 12px 0;padding:13px;border-radius:18px;align-items:flex-start;flex-direction:column}.navlinks{gap:15px}.navlinks a{font-size:14px}.page{padding:40px 16px 70px}.upload-grid{grid-template-columns:1fr}.panel{padding:18px}.lead{font-size:16px}}
+</style>
+</head>
+<body>
+<img class="ghost one" src="assets/ghost.png" alt="">
+<img class="ghost two" src="assets/ghost.png" alt="">
+<header class="site-nav">
+<a class="brand" href="index.html"><img src="assets/luxvisuals-crown.png" alt="">LuxVisuals</a>
+<nav class="navlinks"><a href="index.html">Главная</a><a href="resource-packs.html">Ресурс-паки</a><a href="configs.html">Конфиги</a><a href="account.html">Аккаунт</a></nav>
+</header>
+<main class="page">
+<div class="eyebrow">✦ Community art · Halloween</div>
+<h1>Галерея граффити</h1>
+<p class="lead">Добавляй собственные граффити, собирай коллекцию и делись творчеством с другими игроками.</p>
+<div class="tokenbar"><img src="assets/token.png" alt="Токены"><strong id="tokens">120</strong><span class="muted">токенов</span></div>
+<p class="muted">Публикация одного граффити стоит 10 токенов · демо</p>
+<section class="panel">
+<h2>＋ Добавить граффити</h2>
+<p class="muted">Загрузи изображение, придумай название и опубликуй его за 10 токенов.</p>
+<div class="upload-grid">
+<div>
+<label class="muted" for="name">Название граффити</label>
+<input class="field" id="name" maxlength="40" placeholder="Например, Ghost Party">
+<label class="muted" for="image">Изображение (PNG, JPG или WebP, до 2 МБ)</label>
+<input class="field" id="image" type="file" accept="image/png,image/jpeg,image/webp">
+<img id="preview" class="preview" alt="Предпросмотр">
+<button class="btn" id="publish" type="button">Опубликовать · 10 токенов</button>
+<div id="status" class="status"></div>
+</div>
+<div class="empty">Твоё граффити появится здесь после публикации. В демо данные сохраняются в этом браузере.</div>
+</div>
+</section>
+<section class="panel"><h2>Мои граффити</h2><div id="mine" class="gallery"><div class="empty">Загрузка…</div></div></section>
+<section class="panel"><h2>Галерея сообщества</h2><div id="community" class="gallery"></div></section>
+</main>
+<script src="graffiti-demo.js"></script>
+</body>
+</html>
